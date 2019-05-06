@@ -10,6 +10,10 @@ nproc = 50
 num_instance = 20
 num_trial = 10
 
+cmd = "mpicc mpi-EM-ws.c -O3 -lm -lfftw3 -o recon"
+p = Popen(cmd, shell=True)
+p.wait()
+
 for i in range(length):
     cmd = "mpirun -n {0:d} python mpi-make-data.py {1:f} {2:d}".format(num_instance, sigma[i], num_data)
     p = Popen(cmd, shell=True)
